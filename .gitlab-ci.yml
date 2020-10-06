@@ -32,7 +32,7 @@ build:
   - master
   script:
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-  - docker build -t $TEST_IMAGE -f compose/production/django/Dockerfile .
+  - docker build -t $TEST_IMAGE .
   - docker push $TEST_IMAGE
 
 master build:
