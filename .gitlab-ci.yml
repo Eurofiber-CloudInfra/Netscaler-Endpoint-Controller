@@ -42,6 +42,9 @@ master build:
  script:
  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
  - docker pull $TEST_IMAGE
- - docker tag $TEST_IMAGE $RELEASE_IMAGE
+ - apk add --no-cache curl util-linux
+ - curl -L -O https://github.com/docker-slim/docker-slim/releases/latest/download/dist_linux.tar.gz
+ - tar -zxvf dist_linux.tar.gz
+ - script -q -c "docker-slim --report off build --show-clogs --http-probe=false --target $RELEASE_IMAGE --continue-after 5 --include-path '/usr/local/lib/python3.7/site-packages/certifi' $TEST_IMAGE"
  - docker push $RELEASE_IMAGE  
 
