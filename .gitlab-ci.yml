@@ -45,6 +45,6 @@ master build:
  - apk add --no-cache curl util-linux
  - curl -L -O https://downloads.dockerslim.com/releases/1.32.0/dist_linux.tar.gz
  - tar -zxvf dist_linux.tar.gz
- - script -q -c "docker-slim --report off build --show-clogs --http-probe=false --target $RELEASE_IMAGE --continue-after 5 --include-path '/usr/local/lib/python3.7/site-packages/certifi' $TEST_IMAGE"
+ - script -q -c "dist_linux/docker-slim --report off build --show-clogs --http-probe=false --target $RELEASE_IMAGE --continue-after 5 --include-path '/usr/local/lib/python3.7/site-packages/certifi' $TEST_IMAGE"
  - docker push $RELEASE_IMAGE  
 
