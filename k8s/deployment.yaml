@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netscaler-endpoint-operator
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      application: netscaler-endpoint-operator
+  template:
+    metadata:
+      labels:
+        application: netscaler-endpoint-operator
+    spec:
+      serviceAccountName: netscaler-endpoint-account
+      containers:
+      - name: netscaler-endpoint
+        image: registry.matrixmind-labs.com/customers/riskco/netscaler-endpoint-controller
