@@ -2,11 +2,27 @@
 
 A Kubernetes controller that registers nodes with predefined labels with the Netscaler to ensure transparent registration.
 
-## Run on Kubernetes
+## Running
 
-In order to run it on Kubernetes ensure you have the correct ServiceAccount created.
+### Local test
 
-## Manual Actions
+In order to run it on your machine ensure you need to have a connection to a Kubernetes cluster.
+It will use the default KUBECONFIG setting or `~/.kube/config` file for connecting.
+
+Starting can be done using the command:
+
+```bash
+local.sh
+```
+
+This will firstly try to setup a local Netscaler Docker instance if not running.
+Then the handler is started so you can test the interaction with the existing cluster.
+
+### Container test
+
+To validate correct interaction from within the container the command `test_container.sh` can be used.
+
+## Manual Actions For Netscaler
 
 Commands below can be tested on a local test environment. For remote replace hostname, port, username and password.
 
