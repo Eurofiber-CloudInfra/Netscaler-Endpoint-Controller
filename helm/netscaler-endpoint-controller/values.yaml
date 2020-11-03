@@ -1,0 +1,33 @@
+#
+# 
+#
+
+netscaler:
+  host: http://localhost:32768
+  username: abcdef
+  password: defghi
+  servicegroup: abcd
+
+replicaCount: 1
+
+image:
+  repository: registry.matrixmind-labs.com/customers/riskco/netscaler-endpoint-controller
+  tag: latest
+  pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+
+resources: 
+  requests:
+    cpu: 20m
+    memory: 24Mi
+  limits:
+    cpu: 100m
+    memory: 48Mi 
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

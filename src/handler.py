@@ -106,7 +106,8 @@ def update_netscaler():
         if node not in k8s_ips and len(ns_nodes) > 1:
             logger.info(node+" not found in K8S Nodes, Can be deleted")
             params={'args': "ip:"+node}
-            r = requests.delete(NETSCALER_HOST+'/nitro/v1/config/servicegroup_servicegroupmember_binding/'+NETSCALER_SVC_GRP+"?args=ip:"+node+",port:"+str(NETSCALER_SVC_PORT),
+            r = requests.delete(NETSCALER_HOST+'/nitro/v1/config/servicegroup_servicegroupmember_binding/'+\
+                                NETSCALER_SVC_GRP+"?args=ip:"+node+",port:"+str(NETSCALER_SVC_PORT),
                              headers=headers,
                              auth=(NETSCALER_USERNAME, NETSCALER_PASSWORD))
             if r.status_code > 300:
