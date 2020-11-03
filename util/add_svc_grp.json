@@ -1,0 +1,7 @@
+{
+    "servicegroup": {
+        "servicegroupname": "acdb",
+        "servicetype": "HTTP",
+        "cachetype": "FORWARD"
+    }
+}
