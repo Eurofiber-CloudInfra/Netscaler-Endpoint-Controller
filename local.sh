@@ -20,4 +20,4 @@ fi
 # Populate local load balancer with test servicegroup
 curl -H "X-NITRO-USER: nsroot" -H "X-NITRO-PASS: nsroot" -H "Content-Type:application/json" -d @util/add_svc_grp.json http://localhost:32768/nitro/v1/config/servicegroup
 
-kopf run src/handler.py --verbose
+kopf run src/handler.py 

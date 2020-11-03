@@ -1,0 +1,7 @@
+{
+    "servicegroup_servicegroupmember_binding": {
+        "servicegroupname": "acdb",
+        "ip": "10.10.10.10",
+        "port": 80
+    }
+}

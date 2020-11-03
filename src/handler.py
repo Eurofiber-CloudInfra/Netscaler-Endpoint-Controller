@@ -1,8 +1,10 @@
+import os
 import kopf
 import pykube
-import os
-import requests
 import logging
+import requests
+
+from pyfiglet import Figlet
 
 '''
 Variables that can be set using environment and default
@@ -75,10 +77,13 @@ def update_netscaler():
     logger.info("Found "+str(len(ns_nodes))+" bindings on Netscaler")
     logger.debug(ns_nodes)
 
+    k8s_ips = []
+
     for node in k8s_nodes:
         for address in node.obj["status"]["addresses"]:
             if address["type"] == "ExternalIP":
                 external_ip = (address["address"])
+                k8s_ips.append(external_ip)
                 if external_ip not in ns_nodes:
                     logging.info("Found a new node "+external_ip)
                     data = {
@@ -98,7 +103,23 @@ def update_netscaler():
                     logger.debug(r.text)
 
     for node in ns_nodes:   
-        # check if in k8s_nodes list
-        # Adding protections against 'emptying the lb pool ??'
-        # if not delete
-        pass
+        if node not in k8s_ips and len(ns_nodes) > 1:
+            logger.info(node+" not found in K8S Nodes, Can be deleted")
+            params={'args': "ip:"+node}
+            r = requests.delete(NETSCALER_HOST+'/nitro/v1/config/servicegroup_servicegroupmember_binding/'+NETSCALER_SVC_GRP+"?args=ip:"+node+",port:"+str(NETSCALER_SVC_PORT),
+                             headers=headers,
+                             auth=(NETSCALER_USERNAME, NETSCALER_PASSWORD))
+            if r.status_code > 300:
+                logger.error("Could not delete the node")
+                logger.error(r.text)
+            logger.info("Node deleted")
+
+
+'''
+Nice initialization header
+'''
+print('')
+custom_fig = Figlet(font='graffiti')
+print(custom_fig.renderText('Matrixmind'))
+print("Project: Netscaler Endpoint Controller")
+print("--------------------------------------")
