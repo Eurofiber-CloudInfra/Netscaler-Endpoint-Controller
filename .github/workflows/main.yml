@@ -22,5 +22,6 @@ jobs:
       - name: 'Build:dockerimage'
         uses: docker/build-push-action@v2
         with:
-          tag: latest
+          tags: |
+            ghcr.io/MatrixMind-cloud/Netscaler-Endpoint-Controller:latest
           push: true
