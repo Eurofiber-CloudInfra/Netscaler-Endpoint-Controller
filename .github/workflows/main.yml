@@ -1,31 +1,23 @@
-# This is a basic workflow to help you get started with Actions
+name: 'build'
 
-name: CI
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches:
+    - master
   pull_request:
-    branches: [ master ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
+    name: 'Build'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2.3.2
-      name: Check out code
-
-    - uses: docker/build-push-action@v2.1.0
-      name: Build & push Docker image
-      with:
-        image: Netscaler-Endpoint-Controller/dist
-        tag: latest
-        registry: ghcr.io
-        dockerfile: Dockerfile
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: "Build:checkout"
+        uses: actions/checkout@v2
+      - name: 'Build:dockerimage'
+        uses: docker/build-push-action@v1
+        with:
+          registry: ghcr.io
+          username: "jaapgorjup"
+          password: ${{ secrets.PAT }}
+          repository: rguichard/helloworld
+          tags: latest
