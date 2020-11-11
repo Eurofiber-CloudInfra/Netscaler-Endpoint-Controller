@@ -13,11 +13,13 @@ jobs:
     steps:
       - name: "Build:checkout"
         uses: actions/checkout@v2
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1 
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
       - name: 'Build:dockerimage'
         uses: docker/build-push-action@v2
         with:
-          registry: ghcr.io
-          username: "jaapgorjup"
-          password: ${{ secrets.PAT }}
-          repository: matrixmind-cloud/netscaler-endpoint-controller
-          tags: latest
+          push: true
