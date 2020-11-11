@@ -14,10 +14,10 @@ jobs:
       - name: "Build:checkout"
         uses: actions/checkout@v2
       - name: 'Build:dockerimage'
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
           registry: ghcr.io
           username: "jaapgorjup"
           password: ${{ secrets.PAT }}
-          repository: rguichard/helloworld
+          repository: matrixmind-cloud/netscaler-endpoint-controller
           tags: latest
