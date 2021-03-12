@@ -9,7 +9,7 @@ A Kubernetes controller that registers nodes with predefined labels with the Net
 | NETSCALER_HOST     | Schema and hostname of the Netscaler Nitro API | <http://localhost:32768> |
 | NETSCALER_USERNAME | Username for the Netscaler Nitro API | nsroot |
 | NETSCALER_PASSWORD | Password for the Netscaler Nitro API | nsroot |
-| NETSCALER_SVC_GRP  | Servicegroup name of the loadbalancer | acdb |
+| NETSCALER_SVC_GRP  | Servicegroup names of the loadbalancer. Comma separated without space if more than one | acdb |
 | NETSCALER_SVC_PORT | Servicegroup port of the loadbalancer | 80 |
 | K8S_SSL_VERIFY     | Validation of the Kubernetes certificate CA | False |
 | FILTER_LABEL_NAME  | Nodeselector key name | nodepool |
