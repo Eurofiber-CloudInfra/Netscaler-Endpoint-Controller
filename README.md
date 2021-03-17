@@ -1,6 +1,7 @@
 # Netscaler Endpoint Controller
 
 A Kubernetes controller that registers nodes with predefined labels with the Netscaler to ensure transparent registration.
+![CodeQL](https://github.com/MatrixMind-cloud/Netscaler-Endpoint-Controller/workflows/CodeQL/badge.svg)
 
 ## Container configuration
 
