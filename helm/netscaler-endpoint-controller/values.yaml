@@ -11,7 +11,7 @@ netscaler:
 replicaCount: 1
 
 image:
-  repository: registry.matrixmind-labs.com/customers/riskco/netscaler-endpoint-controller
+  repository: ghcr.io/matrixmind-cloud/netscaler-endpoint-controller
   tag: latest
   pullPolicy: Always
 
@@ -26,8 +26,17 @@ resources:
     cpu: 100m
     memory: 48Mi 
 
-nodeSelector: {}
+nodeSelector: 
+  node-role.kubernetes.io/controlplane: "true"
 
-tolerations: []
+tolerations: 
+- effect: NoSchedule
+  key: node-role.kubernetes.io/controlplane
+  operator: Equal
+  value: "true"
+- effect: NoExecute
+  key: node-role.kubernetes.io/etcd
+  operator: Equal
+  value: "true"
 
 affinity: {}
