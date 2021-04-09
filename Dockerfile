@@ -4,6 +4,7 @@ WORKDIR /app
 COPY src/handler.py .
 
 RUN apk add gcc musl-dev
-RUN pip install kopf requests pyfiglet
+ADD requirements.txt /
+RUN pip install -r /requirements.txt
 RUN apk del gcc musl-dev
-ENTRYPOINT [ "kopf", "run", "/app/handler.py", "--verbose"]
+ENTRYPOINT [ "kopf", "run", "/app/handler.py", "--verbose", "--all-namespaces"]

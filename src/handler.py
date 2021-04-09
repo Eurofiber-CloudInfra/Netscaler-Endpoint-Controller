@@ -63,7 +63,7 @@ def update_netscaler():
     Works independently of the event that starts it so retrieval.
     '''
     api = pykube.HTTPClient(
-        pykube.KubeConfig.from_env(), verify=K8S_SSL_VERIFY)
+        pykube.config.KubeConfig.from_env(), verify=K8S_SSL_VERIFY)
     k8s_nodes = pykube.Node.objects(api).filter(
         selector={FILTER_LABEL_NAME: FILTER_LABEL_VALUE})
 
