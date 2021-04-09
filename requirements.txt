@@ -2,3 +2,4 @@ kopf
 kopf[full-auth]
 requests
 pyfiglet
+pykube
